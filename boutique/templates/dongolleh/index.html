@@ -1,0 +1,83 @@
+{% extends 'dongolleh/base.html' %}
+
+{% block content %}
+
+<section class="relative h-[700px] overflow-hidden text-center">
+  <div class="absolute inset-0 z-0 slideshow">
+    {% for bg in backgrounds %}
+      <div class="slide{% if forloop.first %} active{% endif %} absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
+           style="background-image: url('{{ bg.image.url }}');"></div>
+    {% endfor %}
+    <div class="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl drop-shadow-lg bg-white bg-opacity-75 text-black p-6 rounded-lg">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Import - Export & Commerce Général</h2>
+        <p class="text-lg sm:text-xl mb-6">Spécialisé actuellement dans la vente de bagues élégantes et de qualité.</p>
+        <a href="#produits" class="inline-block bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition">
+          Découvrir nos bagues
+        </a>
+      </div>
+    </div>
+  </div>
+
+  
+ 
+</section>
+
+<!-- Produits -->
+<section id="produits" class="py-12 px-4">
+  <div class="container mx-auto">
+    <h3 class="text-2xl font-semibold mb-6 text-center">Nos Bagues</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {% for bague in bagues %}
+      <div class="border p-4 rounded shadow hover:shadow-lg transition">
+        <a href="{% url 'bague_detail' bague.id %}">
+          <img src="{{ bague.image.url }}" alt="{{ bague.nom }}" class="w-full h-60 object-cover rounded mb-4">
+          <h4 class="text-lg font-bold">{{ bague.nom }}</h4>
+          <p class="text-sm">{{ bague.description|truncatewords:15 }}</p>
+          <p class="mt-2 text-yellow-600 font-semibold">{{ bague.prix }} FCFA</p>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="bg-gray-100 py-12 px-4">
+  <div class="container mx-auto">
+    <h3 class="text-2xl font-semibold mb-6 text-center">Nos Services</h3>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded shadow">
+        <h4 class="font-bold text-xl mb-2">Import</h4>
+        <p>Nous facilitons l'importation de produits de qualité pour nos clients.</p>
+      </div>
+      <div class="bg-white p-6 rounded shadow">
+        <h4 class="font-bold text-xl mb-2">Export</h4>
+        <p>Exportation fiable de marchandises vers l'international.</p>
+      </div>
+      <div class="bg-white p-6 rounded shadow">
+        <h4 class="font-bold text-xl mb-2">Commerce Général</h4>
+        <p>Nous proposons une variété de produits en gros et au détail.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WhatsApp Contact -->
+<section id="contact" class="py-12 px-4">
+  <div class="container mx-auto text-center">
+    <h3 class="text-2xl font-semibold mb-4">Contactez-nous via WhatsApp</h3>
+    <p class="mb-4">Nous sommes disponibles pour toute demande ou commande via WhatsApp.</p>
+    <a href="https://wa.me/23585273927"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="inline-flex items-center bg-green-500 text-white px-6 py-3 rounded-full hover:bg-green-600 transition">
+      <svg class="h-5 w-5 mr-2 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 0C7.164 0 0 7.163 0 16c0 2.82.736 5.576 2.131 7.992L0 32l8.254-2.101A15.902 15.902 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm8.646 23.354c-.47 1.313-2.296 2.444-3.81 2.688-.977.153-2.18.22-3.512-.223-1.63-.537-3.148-1.586-4.43-2.96-1.72-1.813-3.016-4.254-3.562-6.572-.26-1.102-.18-2.104.232-2.884.448-.84 1.248-1.384 2.252-1.493.38-.04.773-.055 1.174-.04.328.012.684.594.888 1.157.264.718.698 1.878.746 2.002.086.22.143.48.027.75-.116.27-.174.438-.342.668-.17.23-.355.513-.505.686-.168.2-.343.414-.147.813.196.4.87 1.43 1.86 2.29 1.28 1.106 2.368 1.45 2.768 1.624.4.173.63.14.87-.085.24-.224 1.01-1.18 1.28-1.586.272-.407.55-.338.92-.206.37.133 2.346 1.108 2.75 1.306.4.196.67.292.77.456.103.163.103.938-.366 2.25z"/>
+      </svg>
+      Discuter sur WhatsApp
+    </a>
+  </div>
+</section>
+
+{% endblock %}

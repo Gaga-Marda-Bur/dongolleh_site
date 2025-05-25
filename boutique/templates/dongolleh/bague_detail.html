@@ -1,0 +1,25 @@
+{% extends 'dongolleh/base.html' %}
+
+{% block content %}
+<section class="py-12 px-4">
+  <div class="max-w-4xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-8 items-start">
+      <!-- Image -->
+      <div>
+        <img src="{{ bague.image.url }}" alt="{{ bague.nom }}" class="w-full h-auto rounded shadow">
+      </div>
+
+      <!-- Infos produit -->
+      <div>
+        <h2 class="text-3xl font-bold mb-4">{{ bague.nom }}</h2>
+        <p class="text-gray-600 mb-4">{{ bague.description }}</p>
+        <p class="text-xl text-yellow-600 font-semibold mb-6">{{ bague.prix }} FCFA</p>
+        <a href="https://wa.me/23585273927?text=Je suis intéressé(e) par la bague '{{ bague.nom }}'" target="_blank"
+           class="inline-block bg-green-500 text-white px-6 py-3 rounded hover:bg-green-600 transition">
+          📱 Commander via WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
