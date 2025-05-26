@@ -1,6 +1,10 @@
 import os
 from pathlib import Path
 import dj_database_url
+import sys
+if 'runserver' not in sys.argv:
+    DEBUG = True
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -9,12 +13,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', default='')
+SECRET_KEY = os.environ.get('SECRET_KEY', default='c-*br^hmh=-n^cv(e_3f=o^i!@v*#)8(k0qk^hu8ew-8f55s_t')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
@@ -30,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'boutique',
     'adminsortable2',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -121,7 +126,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AUTH_USER_MODEL = 'dongolleh_site.User'
 LOGIN_URL = '/admin'
 
 STORAGES = {
@@ -135,5 +139,5 @@ STORAGES = {
 
 AWS_S3_ACCESS_KEY_ID = os.environ.get('AWS_S3_ACCESS_KEY_ID')
 AWS_S3_SECRET_ACCESS_KEY = os.environ.get('AWS_S3_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'dongolleh_site'
+AWS_STORAGE_BUCKET_NAME = 'dongolleh-site'
 AWS_S3_REGION_NAME = 'us-east-1'
