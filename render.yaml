@@ -1,0 +1,22 @@
+databases:
+  - name: boutiquedb
+    plan: free
+    databaseName: boutiques_db
+    user: bongolleh_site_user
+services:
+  - type: web
+    plan: free
+    name: dongolleh_site
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "python -m gunicorn dongolleh_site.asgi:appplication -k uvicorn.workers.UvicornWorker"
+    autoDeploy: true
+    envVars:
+      - key: DATABASE_URL
+        fromDatabe:
+          name: boutiquedb
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
