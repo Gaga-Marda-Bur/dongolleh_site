@@ -9,11 +9,11 @@ services:
     name: dongolleh_site
     runtime: python
     buildCommand: "./build.sh"
-    startCommand: "python -m gunicorn dongolleh_site.asgi:appplication -k uvicorn.workers.UvicornWorker"
+    startCommand: "python -m gunicorn dongolleh_site.asgi:application -k uvicorn.workers.UvicornWorker"
     autoDeploy: true
     envVars:
       - key: DATABASE_URL
-        fromDatabe:
+        fromDatabase:
           name: boutiquedb
           property: connectionString
       - key: SECRET_KEY
