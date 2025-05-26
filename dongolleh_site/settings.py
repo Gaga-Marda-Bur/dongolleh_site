@@ -160,10 +160,3 @@ else:
     STATICFILES_DIRS = [BASE_DIR / "static"]
     STATIC_ROOT = BASE_DIR / "staticfiles"
     MEDIA_ROOT = BASE_DIR / "media"
-
-from django.contrib.auth import get_user_model
-
-if os.environ.get('CREATE_SUPERUSER') == 'true':
-    User = get_user_model()
-    if not User.objects.filter(username='dongadmin').exists():
-        User.objects.create_superuser('dongadmin', 'gagapetitfils@gmail.com', 'Marda..05D')
