@@ -1,24 +1,18 @@
 import os
 from pathlib import Path
 import dj_database_url
-import sys
-if 'runserver' not in sys.argv:
-    DEBUG = True
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Paths
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', default='c-*br^hmh=-n^cv(e_3f=o^i!@v*#)8(k0qk^hu8ew-8f55s_t')
-
-# SECURITY WARNING: don't run with debug turned on in production!
+# Debug mode
 DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'dongolleh-site.onrender.com']
+# Secret key
+SECRET_KEY = os.environ.get('SECRET_KEY', default='c-*br^hmh=-n^cv(e_3f=o^i!@v*#)8(k0qk^hu8ew-8f55s_t')
+
+# Hosts
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
@@ -115,6 +109,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
+# ... tout le reste du fichier settings.py ...
+
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
@@ -122,15 +119,19 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# Media
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_URL = '/admin'
 
+LOGIN_URL = '/admin/'
+
+# Whitenoise + AWS S3
 STORAGES = {
     "default": {
-        "BACKEND": "storages.backends.s3.S3Storage",
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
