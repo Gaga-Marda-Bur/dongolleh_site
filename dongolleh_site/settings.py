@@ -12,7 +12,7 @@ DEBUG = 'RENDER' not in os.environ
 SECRET_KEY = os.environ.get('SECRET_KEY', default='c-*br^hmh=-n^cv(e_3f=o^i!@v*#)8(k0qk^hu8ew-8f55s_t')
 
 # Hosts
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['dongolleh.com', 'www.dongolleh.com', 'localhost', '127.0.0.1']
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
